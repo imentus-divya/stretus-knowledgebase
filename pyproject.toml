@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kb-server"
+version = "1.0.0"
+description = "Standalone Markdown knowledge base with SQLite FTS5 search"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.109.0",
+  "uvicorn[standard]>=0.27.0",
+  "pydantic>=2.5.0",
+  "pydantic-settings>=2.1.0",
+  "structlog>=24.1.0",
+  "markdown>=3.5.0",
+  "PyYAML>=6.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.4.0",
+  "pytest-asyncio>=0.23.0",
+  "httpx>=0.26.0",
+  "asgi-lifespan>=2.1.0",
+]
+
+[project.scripts]
+kb-server = "kb_server.main:run"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["kb_server*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+filterwarnings = [
+  "ignore::DeprecationWarning",
+]
