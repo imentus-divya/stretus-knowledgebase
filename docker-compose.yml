@@ -2,7 +2,7 @@ services:
   knowledgebase:
     build: .
     ports:
-      - "8080:8080"
+      - "5001:5001"
     environment:
       KB_HOST: "0.0.0.0"
       KB_PORT: "8080"
